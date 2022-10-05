@@ -21,9 +21,11 @@
   },
   "scripts": {
     "build": "tree-sitter generate && node-gyp rebuild",
-    "test": "tree-sitter test && script/parse-examples",
+    "test": "tree-sitter test && script/parse-examples && npm run test-stack-graphs",
     "test-windows": "tree-sitter test",
-    "build-test": "tree-sitter generate && node-gyp build && tree-sitter test"
+    "build-test": "tree-sitter generate && node-gyp build && tree-sitter test",
+    "test-stack-graphs": "npm run install-tree-sitter-stack-graphs && ./bin/tree-sitter-stack-graphs test --grammar . --scope source.java test/stack-graphs",
+    "install-tree-sitter-stack-graphs": "cargo install --quiet --root . --version '^0.3' --features cli tree-sitter-stack-graphs"
   },
   "repository": {
     "type": "git",
